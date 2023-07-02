@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>医生登录</title>
+</head>
+<body>
+<form action="index/" method="post">
+    {% csrf_token %}
+    <input type="text" name="user"/><br/>
+    <input type="password" name="password"><br/>
+    <input type="submit" name="提交">
+</form>
+{% if messages %}
+<script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+
+</body>
+</html>

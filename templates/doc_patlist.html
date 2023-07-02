@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看已预约患者列表</title>
+</head>
+<body>
+
+<table>
+
+    <p>
+    <form action="/doc_patlist_name/" method="post">
+    {% csrf_token %}
+            <input type="text" name="patname" >
+            <input type="submit" value="提交">
+        </form>
+    </p>
+    {% for list in doc_pats %}
+    <tr>
+        <td>{{ list.pat_id }}</td>
+        <td>{{ list.pat_name }}</td>
+        <td>{{ list.pat_sex }}</td>
+        <td>{{ list.pat_age }}</td>
+        <td>
+            <a href="{% url 'doc_dealcase' list.pat_id %}">
+            查看病例</a>
+        </td>
+    </tr>
+
+{% endfor %}
+</table>
+</body>
+</html>

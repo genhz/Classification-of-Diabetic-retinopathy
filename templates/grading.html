@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>眼底图像分级</title>
+        <link href="{% static 'css/head.css' %}" type="text/css" rel="stylesheet">
+        <link href="{% static 'css/grading.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body>
+{% include 'header.html' %}
+<div class="main">
+				<div class="left">
+					<div class="title">
+						<h3>糖尿病视网膜病变分级系统</h3>
+					</div>
+					<div class="inner">
+						<div class="form">
+						    <form method="post" action="" enctype="multipart/form-data">
+						    {% csrf_token %}
+						    <input type="file" name="img">
+						    <button type="submit">识别</button>
+						</form>
+						</div>
+						<div class="iden_img">
+						    <img src="{{path}}" alt="img">
+						</div>
+						<div class="identify">
+						    识别结果：{{ identify }}
+						</div>
+						<div class="identify">
+						    描述：{{ describe }}
+						</div>
+						<div class="identify">
+						    建议：{{ advice }}
+						</div>
+					</div>
+
+				</div>
+				<div class="right">
+					<div class="title">
+						<h3>识别分析</h3>
+					</div>
+					<div class="inner">
+						<div id="container"></div>
+						<div hidden="hidden">
+						                <table id="datatable">
+						            <thead>
+						                <tr>
+						                    <th></th>
+						                    <th>各类别相似度</th>
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr>
+						                    <th>0</th>
+						                    <td>{{ a0 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>1</th>
+						                    <td>{{ a1 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>2</th>
+						                    <td>{{ a2 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>3</th>
+						                    <td>{{ a3 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>4</th>
+						                    <td>{{ a4 }}</td>
+						                </tr>
+						            </tbody>
+						        </table>
+						            </div>
+
+						<div class="identify">
+						    有疑问请预约医生<a href="{% url 'docList' %}">预约</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="http://code.hcharts.cn/highcharts/10.0.0/highcharts.js"></script>
+
+			<script src="http://code.hcharts.cn/highstock/10.0.0/highstock.js"></script>
+
+			<script src="http://code.hcharts.cn/highmaps/10.0.0/highmaps.js"></script>
+			<script src="http://cdn.hcharts.cn/highcharts/modules/data.js"></script>
+			<script src="http://code.hcharts.cn/gantt/10.0.0/highcharts-gantt.js"></script>
+			<script src="{% static 'js/excel.js' %}" type="text/javascript"></script>
+			<script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+
+</body>
+</html>

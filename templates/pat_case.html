@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>病例管理</title>
+        <link href="{% static 'css/head.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body>
+{% include 'header.html' %}
+{% for case in cases %}
+    {% if case.img_type == 'dr' %}
+        糖尿病视网膜病变
+    {% endif %} 
+    <img src="{{ case.after_img }}">
+    {% if case.doc_id == 'null' %}
+        <a href="{% url 'docList' %}">预约</a>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>

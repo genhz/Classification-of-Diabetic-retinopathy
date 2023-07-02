@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>医生列表</title>
+        <link href="{% static 'css/head.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body>
+{% include 'header.html' %}
+<table>
+{% for doc in doctors %}
+
+    <tr>
+        <td><img src="{{ doc.img_path }}" style="width: 80px"/></td>
+        <td>{{ doc.doc_name }}</td>
+        <td>{{ doc.doc_age }}</td>
+        <td>{{ doc.doc_text }}</td>
+        <td>
+            <a href="{% url 'docAppointment' doc.doc_id %}"/>
+            预约
+        </td>
+    </tr>
+
+{% endfor %}
+</table>
+{% if messages %}
+<script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

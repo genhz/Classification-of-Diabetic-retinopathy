@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理病例</title>
+{#    <link href="{% static 'css/head.css' %}" type="text/css" rel="stylesheet">#}
+</head>
+<body>
+{% include 'header.html' %}
+<table>
+{% for doc1 in doc_pats %}
+    <ul>
+    <li>姓名：{{ doc1.pat_name }}</li>
+    <li>性别： {{ doc1.pat_sex }}</li>
+    <li>年龄：{{ doc1.pat_age }}</li>
+    <li>联系方式：{{ doc1.pat_phone }}</li>
+    </ul>
+{% endfor %}
+{% for doc2 in doc_deals %}
+    <ul>
+        <li> <img src="doc2.img"> </li>
+        <li><img src="doc2.after_img"> </li>
+        <li>级别：{{ doc2.rating }} </li>
+        <li>添加医嘱：
+            <form action="/" method="post">
+                <textarea>
+                    {{ doc2.propose }}
+                </textarea>
+                <input type="submit" value="保存"/>
+            </form>
+        </li>
+    </ul>
+
+{% endfor %}
+</table>
+
+</body>
+</html>

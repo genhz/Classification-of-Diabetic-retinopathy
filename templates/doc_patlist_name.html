@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+     <p>
+    <form action="/doc_patlist/" method="post">
+    {% csrf_token %}
+            <input type="submit" value="返回">
+        </form>
+    </p>
+{% for list in doc_pats %}
+    <tr>
+        <td>{{ list.pat_id }}</td>
+        <td>{{ list.pat_name }}</td>
+        <td>{{ list.pat_sex }}</td>
+        <td>{{ list.pat_age }}</td>
+        <td>
+            <a href="{% url 'doc_dealcase' list.pat_id %}">
+            查看病例</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+</body>
+</html>
